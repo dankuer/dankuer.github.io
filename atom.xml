@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dankuer.github.io/"/>
-  <updated>2016-08-01T14:39:39.826Z</updated>
+  <updated>2016-08-01T23:37:10.872Z</updated>
   <id>https://dankuer.github.io/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>提交hexo博客到GitHub Pages时不成功的解决方法</title>
+    <link href="https://dankuer.github.io/2016/08/01/%E6%8F%90%E4%BA%A4hexo%E5%8D%9A%E5%AE%A2%E5%88%B0GitHub-Pages%E6%97%B6%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
+    <id>https://dankuer.github.io/2016/08/01/提交hexo博客到GitHub-Pages时不成功的解决方法/</id>
+    <published>2016-08-01T15:35:00.000Z</published>
+    <updated>2016-08-01T23:37:10.872Z</updated>
+    
+    <content type="html"><![CDATA[<p>##由来<br>最近正在自己研究基于Nodejs的简单Blog实现，也算是练练手吧。<br>今天突发奇想，看看GitHub上边比较火的博客系统有哪些，于是就找到了火火的$hexo 博客<br>心血来潮，按照官方的教程进行了配置，准备架设到GitHub提供的GitHub Pages上边。<br><a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="external">官方配置及部署教程见这里</a></p>
+<p>##问题<br>官方文档还是比较清楚了，配置过程闲话不表。修改了_config.yml文件下边的deploy部分如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type:git</div><div class="line">  repo:https:<span class="comment">//github.com/dankuer/dankuer.github.io.git</span></div></pre></td></tr></table></figure></p>
+<p>安装了官方要求的针对git的部署插件<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
+<p>然后使用部署命令进行部署<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure></p>
+<p>命令一闪而过，没有任何错误，但是就是未能成功提交！！！<br>仔细在网上搜查了一通，终于发现问题所在！</p>
+<p>##解决方法<br>原来在hexo中，默认配置项的key冒号之后要加一个空格，不然无法识别！<br>做出如下修改<br><figure class="highlight diff"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line"><span class="deletion">-   type:git</span></div><div class="line"><span class="addition">+   type: git</span></div><div class="line"><span class="deletion">-   repo:https://github.com/dankuer/dankuer.github.io.git</span></div><div class="line"><span class="addition">+   repo:https://github.com/dankuer/dankuer.github.io.git</span></div></pre></td></tr></table></figure></p>
+<p>##心得体会<br>小小的一个空格，却足足折腾了快一晚上。虽然最后终于解决，但也给出了提示。<br>1.认真阅读官方文档，即使那些没有明确标识的地方，比如官方文档的示例中就存在一个空格，结果后边自己写的时候没有完全按照官方文档的格式，随意地就去掉了空格。<br>2.善于求助搜索引擎</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##由来&lt;br&gt;最近正在自己研究基于Nodejs的简单Blog实现，也算是练练手吧。&lt;br&gt;今天突发奇想，看看GitHub上边比较火的博客系统有哪些，于是就找到了火火的$hexo 博客&lt;br&gt;心血来潮，按照官方的教程进行了配置，准备架设到GitHub提供的GitHub Pa
+    
+    </summary>
+    
+    
+      <category term="git hexo" scheme="https://dankuer.github.io/tags/git-hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
