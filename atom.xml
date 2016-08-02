@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dankuer.github.io/"/>
-  <updated>2016-08-02T13:57:28.117Z</updated>
+  <updated>2016-08-02T15:43:52.516Z</updated>
   <id>https://dankuer.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="https://dankuer.github.io/2016/08/01/%E6%8F%90%E4%BA%A4hexo%E5%8D%9A%E5%AE%A2%E5%88%B0GitHub-Pages%E6%97%B6%E4%B8%8D%E6%88%90%E5%8A%9F%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/"/>
     <id>https://dankuer.github.io/2016/08/01/提交hexo博客到GitHub-Pages时不成功的解决方法/</id>
     <published>2016-08-01T15:35:00.000Z</published>
-    <updated>2016-08-02T13:57:28.117Z</updated>
+    <updated>2016-08-02T15:43:52.516Z</updated>
     
     <content type="html"><![CDATA[<h3 id="由来"><a href="#由来" class="headerlink" title="由来"></a>由来</h3><p>最近正在自己研究基于<strong>Nodejs</strong> 的简单 <strong>Blog</strong> 实现，也算是练练手吧。<br>今天突发奇想，看看 <strong>GitHub</strong> 上边比较火的博客系统有哪些，于是就找到了火火的 <strong>hexo</strong> 博客<br>心血来潮，按照官方的教程进行了配置，准备架设到 <strong>GitHub</strong> 提供的 <strong>GitHub Pages</strong> 上边。<br><a href="https://hexo.io/zh-cn/docs/deployment.html#Git" target="_blank" rel="external">官方配置及部署教程见这里</a></p>
 <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>官方文档还是比较清楚了，配置过程闲话不表。修改了_config.ym 文件下边的<strong>deploy</strong> 部分如下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type:git</div><div class="line">  repo:https:<span class="comment">//github.com/dankuer/dankuer.github.io.git</span></div></pre></td></tr></table></figure></p>
