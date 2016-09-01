@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://dankuer.github.io/"/>
-  <updated>2016-08-03T14:28:00.101Z</updated>
+  <updated>2016-09-01T15:06:08.462Z</updated>
   <id>https://dankuer.github.io/</id>
   
   <author>
@@ -14,6 +14,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>phototest</title>
+    <link href="https://dankuer.github.io/2016/09/01/phototest/"/>
+    <id>https://dankuer.github.io/2016/09/01/phototest/</id>
+    <published>2016-09-01T14:56:48.000Z</published>
+    <updated>2016-09-01T15:06:08.462Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="phototest"><a href="#phototest" class="headerlink" title="phototest"></a>phototest</h2>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;phototest&quot;&gt;&lt;a href=&quot;#phototest&quot; class=&quot;headerlink&quot; title=&quot;phototest&quot;&gt;&lt;/a&gt;phototest&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Document.body 为 null</title>
+    <link href="https://dankuer.github.io/2016/09/01/Document-body-%E4%B8%BA-null/"/>
+    <id>https://dankuer.github.io/2016/09/01/Document-body-为-null/</id>
+    <published>2016-09-01T13:55:39.000Z</published>
+    <updated>2016-09-01T15:38:09.705Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题表现"><a href="#问题表现" class="headerlink" title="问题表现"></a>问题表现</h2><p>在页面的脚本中使用<strong>document.body</strong>时，发现报错，提示<strong>document.body</strong>为<strong>null</strong><br><a id="more"></a><br>其中，页面文件<strong>index.html</strong>如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--some code--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>bundle.js</strong>文件内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建img元素</span></div><div class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</div><div class="line"><span class="comment">//指定源文件</span></div><div class="line">img.src= <span class="built_in">require</span>(<span class="string">'./img/baidu.png'</span>);</div><div class="line"><span class="comment">//指定使用的样式</span></div><div class="line">img.className = <span class="string">'img-circle'</span>;</div><div class="line"><span class="comment">//把当前的图片插入到当前的文档里</span></div><div class="line"><span class="built_in">document</span>.body.appendChild(img);</div></pre></td></tr></table></figure></p>
+<p>访问index.html后浏览器报错：<br><img src="http://octyzlieh.bkt.clouddn.com/image/hexoblog/2016/09/01/liulanqibaocuo.png" alt=""></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>为定位问题，在此页面中点击F12后打开开发者工具，在console控制台中输入<strong>document.body</strong>查看是否有值</p>
+<p><img src="http://octyzlieh.bkt.clouddn.com/image/hexoblog/2016/09/01/documentyouzhi.png" alt="控制台中有值"></p>
+<p>说明此时<strong>document.body</strong>确实是一个正常的dom元素，并且有<em>appendChild</em>方法。</p>
+<p>进一步分析，应该是在appendChild方法的调用时刻，<strong>document.body</strong>没有值。<br>这样一思考，问题的答案就明确了，是bundle.js的放置位置出现了问题。在dom树中body节点还未初始化时就进行了引用，导致取到一个null值。</p>
+<h2 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h2><p>将index.html文件修改如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">-    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> <span class="comment">&lt;!--删除此行--&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--some code--&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line">+    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"bundle.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>再次测试，问题解决。</p>
+<h2 id="收获"><a href="#收获" class="headerlink" title="收获"></a>收获</h2><p>在针对dom进行操作时，一定要等待dom树加载完毕后再进行。<br>通过两种方式：<br>1.将对应脚本放置在页面最下方，可以确保页面加载完毕后再加载脚本；<br>2.在javascript代码中，使用document.readyState==”complete”等事件方法来确认页面已经加载完毕。或者使用jquery的$(document).ready()方法。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题表现&quot;&gt;&lt;a href=&quot;#问题表现&quot; class=&quot;headerlink&quot; title=&quot;问题表现&quot;&gt;&lt;/a&gt;问题表现&lt;/h2&gt;&lt;p&gt;在页面的脚本中使用&lt;strong&gt;document.body&lt;/strong&gt;时，发现报错，提示&lt;strong&gt;document.body&lt;/strong&gt;为&lt;strong&gt;null&lt;/strong&gt;&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="javascript" scheme="https://dankuer.github.io/tags/javascript/"/>
+    
+  </entry>
   
   <entry>
     <title>提交hexo博客到GitHub Pages时不成功的解决方法</title>
